@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>[[ title ]]</title>
+    <style>
+      * {
+        font-family: helvetica;
+        font-weight: 400;
+      }
+      .base {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid;
+        border-bottom: 1px solid;
+        height: 80vh;
+      }
+      body {
+        margin: 1vh 5vw;
+      }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Drogon Demo App using C++</h1>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+    </header>
+
+    <main class="base">
+        [[]]
+    </main>
+
+    <footer>
+        <p>footer</p>
+    </footer>
+</body>
+</html>
