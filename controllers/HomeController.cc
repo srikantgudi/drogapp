@@ -5,7 +5,6 @@
 
 #include <sstream>
 #include <vector>
-#include "Category.h"
 
 using namespace std;
 using namespace drogon;
@@ -19,31 +18,23 @@ void HomeController::home(const HttpRequestPtr& req, std::function<void (const H
         [callback](const drogon::orm::Result &result) {
             // Json::Value data(Json::arrayValue);  // Array of categories
 
-            stringstream ss("");
+            stringstream html("");
 
-            ss << "<style>* {font-family:helvetica;}\ntd {padding: 0.25rem 0.5rem;}\nthead {background-color:#666;color:beige;}</style>"
-            << "<table>"
-            << "<thead><tr><td>Id</td><td>Name</td></thead>"
-            << "<tbody>"
-            ;
-            std::vector<Category> categories;
-
+            html << "<style>* {font-family:helvetica;}\ntd {padding: 0.25rem 0.5rem;}\nthead {background-color:#666;color:beige;}</style>"
+                << "<table>"
+                << "<thead><tr><td>Id</td><td>Name</td></thead>"
+                << "<tbody>"
+                ;
             for (const auto &row : result) {
-                categories.push_back(Category{
-                    row["categoryid"].as<int>(),
-                    row["categoryname"].as<std::string>()
-                });
-                ss << "<tr><td>" << row["categoryid"].as<int>() << "</td>"
+                html << "<tr><td>" << row["categoryid"].as<int>() << "</td>"
                     << "<td>" << row["categoryname"].as<std::string>()
                     << "</td></tr>";
             }
-            ss << "</tbody></table>";
-
-            cout << categories.size() << " rows populated in vector\n";
+            html << "</tbody></table>";
 
             // Insert into view
             HttpViewData viewData;
-            viewData.insert("data", ss.str());
+            viewData.insert("data", html.str());
             viewData.insert("title","Categories");
 
             auto resp = HttpResponse::newHttpViewResponse("home.csp", viewData);
