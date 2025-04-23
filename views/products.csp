@@ -1,0 +1,12 @@
+
+<%c++
+  #include <drogon/orm/Mapper.h>
+  #include "Product.h"
+
+  auto & data = @@.get<drogon::orm::Result>("products");
+%>
+  <%c++ for (auto p : data) {%>
+    <div>
+      {% p["productid"].as<int>() %}
+    </div>
+  <%c++}%>

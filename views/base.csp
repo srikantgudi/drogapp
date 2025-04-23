@@ -2,31 +2,42 @@
 <html>
 <head>
     <title>[[ title ]]</title>
+    <script src="https://unpkg.com/htmx.org"></script>
     <style>
-      * {
-        font-family: helvetica;
+    * {
+        font-family: Helvetica;
         font-weight: 400;
-      }
-      .base {
-        margin-top: 1rem;
-        padding-top: 1rem;
-        border-top: 1px solid;
-        border-bottom: 1px solid;
-        height: 80vh;
-      }
-      body {
+    }
+    html {
+        background-color: #666;
+    }
+    body {
+        background-color: whitesmoke;
+        height: 90vh;
         margin: 1vh 5vw;
-      }
+        padding: 0 1rem;
+    }
+    main {
+        height: 80%;
+    }
+    thead {
+        background-color: #666;
+        color: beige;
+    }
+    td {
+        padding: 0.25rem 0.5rem;
+    }
     </style>
 </head>
 <body>
     <header>
         <h1>Drogon Demo App using C++</h1>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
+        <a hx-get="/home" hx-target="#content">Home</a>
+        <a hx-get="/about" hx-target="#content">About</a>
+        <a hx-get="/categories" hx-target="#content">Products</a>
     </header>
 
-    <main class="base">
+    <main class="base" id="content">
         [[]]
     </main>
 

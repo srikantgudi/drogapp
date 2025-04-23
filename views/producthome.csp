@@ -1,0 +1,15 @@
+<div style="display:grid;grid-template-columns:1fr 2fr;gap:1rem">
+  <div>
+    <h1>Categories</h1>
+    <div>
+      [[ categories ]]
+    </div>
+  </div>
+  <div>
+    <h1>Products</h1>
+
+    <div id="products">
+      -- products --
+    </div>
+  </div>
+</div>
