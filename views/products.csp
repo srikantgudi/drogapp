@@ -1,12 +1,36 @@
+<%inc
+  #include "Product.h"
+  #include <iomanip>
+  #include <sstream>
+%>
 
 <%c++
-  #include <drogon/orm/Mapper.h>
-  #include "Product.h"
-
-  auto & data = @@.get<drogon::orm::Result>("products");
+  using namespace std;
+  auto & products = @@.get<std::vector<Product>>("products");
 %>
-  <%c++ for (auto p : data) {%>
-    <div>
-      {% p["productid"].as<int>() %}
-    </div>
-  <%c++}%>
+
+<pre>{% products.size() %} rows</pre>
+
+  <table width="80%">
+    <thead>
+      <tr>
+        <td width="10%"align="right">Id</td>
+        <td width="auto">Name</td>
+        <td width="15%" align="right">Price</td>
+        <td width="15%" align="right">ROR level</td>
+      </tr>
+    </thead>
+    <tbody>
+      <%c++ for (const auto p : products) {
+        stringstream sprice("");
+        sprice<<setw(10)<<fixed<<setprecision(2)<<p.price;
+        %>
+        <tr>
+          <td align="right"><%c++ $$<<p.id; %></td>
+          <td><%c++ $$<<p.name; %></td>
+          <td align="right"><%c++ $$<<sprice.str(); %></td>
+          <td align="right"><%c++ $$<<p.rorlevel; %></td>
+        </tr>
+      <%c++ } %>
+    </tbody>
+  </table>

@@ -13,6 +13,5 @@ class ProductController : public drogon::HttpController<ProductController>
     METHOD_LIST_END
     
     void home(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback);
-    void products(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, long catid);
-    
+    void products(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, long catid);    
 };

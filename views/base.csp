@@ -23,9 +23,30 @@
     thead {
         background-color: #666;
         color: beige;
+        position: sticky;
+        top: 0;
     }
     td {
         padding: 0.25rem 0.5rem;
+    }
+    tbody tr:nth-child(even) {
+        background-color: #ddd;
+    }
+    tbody > tr:hover {
+        background-color: #999;
+        color: #eee;
+    }
+    .grid-1-2 {
+        display:grid;
+        grid-template-columns:1fr 2fr;
+        gap:1rem;
+    }
+    .hand {
+          cursor: pointer;
+    }
+    .hand:hover {
+        box-sizing: content-box;
+        font-weight: 500;
     }
     </style>
 </head>
@@ -35,6 +56,7 @@
         <a hx-get="/home" hx-target="#content">Home</a>
         <a hx-get="/about" hx-target="#content">About</a>
         <a hx-get="/categories" hx-target="#content">Products</a>
+        <a hx-get="/customers" hx-target="#content">Customers</a>
     </header>
 
     <main class="base" id="content">

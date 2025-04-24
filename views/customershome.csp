@@ -1,0 +1,42 @@
+<%inc
+  #include "Customer.h"
+%>
+
+<%c++
+  using namespace std;
+  auto & customers = @@.get<std::vector<Customer>>("customers");
+%>
+
+<div class="grid-1-2">
+  <div>
+    <h1>Customers</h1>
+    <div>
+      {% customers.size() %} rows :: [[message]]
+    </div>
+    <div style="height:60vh;overflow-y:auto;">
+      <table width="100%">
+        <thead>
+          <tr>
+            <td>Name<div><small>location</small></div></td>
+          </tr>
+        </thead>
+        <tbody>
+          <%c++ for (auto c: customers) {%>
+            <tr class="hand">
+              <td>{% c.name %}
+                <div><small>{% c.city %}, {% c.country %}</small></div>
+              </td>
+            </tr>
+          <%c++ } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div>
+    <h1>Orders</h1>
+
+    <div id="orders">
+      -- orders --
+    </div>
+  </div>
+</div>

@@ -1,8 +1,32 @@
-<div style="display:grid;grid-template-columns:1fr 2fr;gap:1rem">
+<%inc
+  #include "Category.h"
+%>
+
+<%c++
+  using namespace std;
+  auto & categories = @@.get<std::vector<Category>>("categories");
+%>
+
+<div class="grid-1-2">
   <div>
     <h1>Categories</h1>
+    <p>{% categories.size() %} rows</p>
     <div>
-      [[ categories ]]
+      <table>
+        <thead>
+          <tr>
+            <td>Name</td>
+          </tr>
+        </thead>
+        <tbody>
+        <%c++ for (const auto c: categories) { %>
+          <tr hx-get="/products/{%c.id%}" hx-target="#products" class="hand">
+            <td><%c++ $$<<c.name; %></td>
+            <td><%c++ $$<<c.description;%></td>
+          </tr>
+        <%c++ } %>
+        </tbody>
+      </table>
     </div>
   </div>
   <div>
