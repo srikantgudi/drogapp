@@ -22,8 +22,8 @@
         </thead>
         <tbody>
           <%c++ for (auto c: customers) {%>
-            <tr class="hand">
-              <td>{% c.name %}
+            <tr>
+              <td hx-get="/orders/{%c.id%}" hx-target="#orders">{% c.name %}
                 <div><small>{% c.city %}, {% c.country %}</small></div>
               </td>
             </tr>
@@ -33,8 +33,6 @@
     </div>
   </div>
   <div>
-    <h1>Orders</h1>
-
     <div id="orders">
       -- orders --
     </div>

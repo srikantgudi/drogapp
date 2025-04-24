@@ -1,0 +1,44 @@
+<%inc
+  #include "Orderdetail.h"
+  #include <iomanip>
+  #include <sstream>
+%>
+
+<%c++
+  using namespace std;
+  auto & orderdets = @@.get<std::vector<Orderdetail>>("orderdetails");
+%>
+<div>
+  <h2>Order details</h2>
+  <p>{% orderdets.size() %} order-details;</p>
+  <div style="height:60vh;overflow-y:auto">
+    <table width="100%">
+      <thead>
+        <tr>
+          <td width="50%">Product name</td>
+          <td width="15%" align="right">Quantity</td>
+          <td width="15%" align="right">Unit price</td>
+          <td width="15%" align="right">Line total</td>
+        </tr>
+      </thead>
+      <tbody>
+        <%c++ for (auto od: orderdets){
+          stringstream sprice("");
+          sprice<<setw(10)<<fixed<<setprecision(2)<<od.unitprice;
+          stringstream sqty("");
+          sqty<<setw(10)<<fixed<<setprecision(2)<<od.quantity;
+          stringstream slinetotal("");
+          slinetotal<<setw(10)<<fixed<<setprecision(2)<<(od.quantity*od.unitprice);
+        %>
+          <tr>
+            <td>{% od.productname %}</td>
+            <td align="right">{% sqty.str() %}</td>
+            <td align="right">{% sprice.str() %}</td>
+            <td align="right">{% slinetotal.str() %}</td>
+          </tr>
+        <%c++}%>
+      </tbody>
+    </table>
+  </div>
+</div>
+

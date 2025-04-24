@@ -1,0 +1,34 @@
+<%inc
+#include "Order.h"
+%>
+
+<%c++
+  auto & orders = @@.get<std::vector<Order>>("orders");
+%>
+<div class="grid-1-2">
+  <div>
+    <h2>Orders</h2>
+    <p>{% orders.size() %} orders;</p>
+    <div style="height:60vh;overflow-y:auto">
+      <table width="100%">
+        <thead>
+          <tr>
+            <td>OrderId</td>
+            <td>Date</td>
+          </tr>
+        </thead>
+        <tbody>
+          <%c++ for (auto order: orders){ %>
+            <tr hx-get="/order/{% order.orderid %}/details" hx-target="#orderdetails" class="hand">
+              <td>{% order.orderid %}</td>
+              <td>{% order.orderdate %}</td>
+            </tr>
+          <%c++}%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div id="orderdetails">
+    - details-
+  </div>
+</div>

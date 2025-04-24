@@ -47,18 +47,21 @@
           cursor: pointer;
     }
     .hand:hover {
-        box-sizing: content-box;
         font-weight: 600;
+    }
+    button {
+        box-sizing: border-box;
+        padding: 0.5rem auto;
     }
     </style>
 </head>
 <body>
     <header>
-        <h1>Drogon Demo App using C++</h1>
-        <a class="hand" hx-get="/home" hx-target="#content">Home</a>
-        <a class="hand" hx-get="/about" hx-target="#content">About</a>
-        <a class="hand" hx-get="/categories" hx-target="#content">Products</a>
-        <a class="hand" hx-get="/customers" hx-target="#content">Customers</a>
+        <h1>Drogon Demo App using C++, PostgreSQL and HTMX</h1>
+        <button class="hand" hx-get="/home" hx-target="#content">Home</button>
+        <button class="hand" hx-get="/about" hx-target="#content">About</button>
+        <button class="hand" hx-get="/categories" hx-target="#content">Products</button>
+        <button class="hand" hx-get="/customers" hx-target="#content">Customers</button>
     </header>
 
     <main class="base" id="content">
